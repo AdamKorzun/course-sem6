@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/master.css')}}">
+
+    <title>Antivirus</title>
+  </head>
+  <body>
+    <nav>
+      <div class="navbar-content">
+        <ul class = "navbar-ul">
+          <li><a href="{{ url_for('index') }}">Home</a></li>
+          <li><a href="{{ url_for('scan') }}">Scan</a></li>
+          <li><a href="{{ url_for('add_virus') }}">Add</a></li>
+          <li><a href="{{ url_for('history') }}">History</a></li>
+
+        </ul>
+      </div>
+    </nav>
+  </body>
+</html>
