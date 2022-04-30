@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="{{url_for('static',filename='styles/master.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='styles/scan.css')}}">
-    <script src="{{url_for('static',filename='scripts/input_path_control.js')}}">
+    {{ dropzone.load_css() }}
 
-    </script>
     <title>Scan - Antivirus</title>
   </head>
   <body>
+    {{ dropzone.load_js() }}
     <nav>
       <div class="navbar-content">
         <ul class = "navbar-ul">
@@ -47,8 +47,14 @@
           </div>
         </div>
         <input id="path-input" type="text" name="path" value="" placeholder="Path">
+        <!-- <input type = "file" name = "file" /> -->
+
         <input type="submit" id="submit-button" value="Scan">
       </form>
+      {{ dropzone.create(action='file_upload') }}
+      {{ dropzone.config() }}
+      {{ dropzone.style('border: 2px dashed #0085FF;min-width: 800px; background-color:#37393F; color: white;  margin: 0px; display: flex; align-items: center; justify-content: center; min-height: 200px;') }}
+
     </main>
   </body>
 </html>
