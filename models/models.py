@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
@@ -14,3 +15,12 @@ class Virus(db.Model):
         self.name = name
         self.md5_hash = md5_hash
         self.sha_hash = sha_hash
+
+class User(UserMixin, db.Model):
+    __tablename = 'user'
+    id = db.Column('id', db.Integer, primary_key=True)
+    username = db.Column(db.String(100), unique=True, nullable=False)
+    password = db.Column(db.String(100), nullable=False)
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password

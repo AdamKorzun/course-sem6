@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="{{url_for('static',filename='styles/master.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/index.css')}}">
 
     <title>Antivirus</title>
   </head>
@@ -14,9 +15,17 @@
           <li><a href="{{ url_for('scan') }}">Scan</a></li>
           <li><a href="{{ url_for('add_virus') }}">Add</a></li>
           <li><a href="{{ url_for('history') }}">History</a></li>
-
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul>
       </div>
     </nav>
+    <main>
+     <div class="main-content">
+       <h1 id="main-text">Protect your pc with virus scanner</h1>
+       <p id="project-description">•Scan files or download virus scanner<br/>•Add your own files to the system to scan<br/>•View your history and download back files you accidentally deleted</p>
+     </div>
+     <object id="bigger-logo" data="{{url_for('static',filename='assets/virus.svg')}}" width="40%" height="450px"></object>
+
+   </main>
   </body>
 </html>

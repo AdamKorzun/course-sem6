@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/master.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/signin.css')}}">
+
+  </head>
+  <body>
+    <div class="main-content">
+      <p style="color: #CCA43B; font-size: 2em; margin-top: 0px;">Sign in</p>
+      <form class="auth-form"  method="POST">
+        <input class='form-input' type="text" name="username" value="" placeholder="Username">
+        <input class='form-input' type="password" name="password" value="" placeholder="Password">
+        <button class="auth-button" id="sign-in-button" type="submit" name="button">Sign in</button>
+      </form>
+      <p style="color: white; margin-top: 20px;">Don't have an accout? <a  class="sign-text" href="{{ url_for('signup_page') }}">Sign up</a></p>
+    </div>
+  </body>
+</html>

@@ -3,6 +3,8 @@ html{
   height: 100%;
   width: 100%;
   font-family: 'Roboto', sans-serif;
+  background-color: #202124;
+
 }
 body {
   width: 100%;
@@ -39,4 +41,15 @@ a{
 a:hover{
   color: white;
   transition-duration: 0.2s;
+}
+.auth-button{
+  background-color: #CCA43B;
+  border: none;
+  color: white;
+  border-radius: 100px;
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
 }

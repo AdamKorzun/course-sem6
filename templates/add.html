@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/master.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/add.css')}}">
+    {{ dropzone.load_css() }}
+    <title>Antivirus</title>
+  </head>
+  <body>
+    {{ dropzone.load_js() }}
+    <nav>
+      <div class="navbar-content">
+        <ul class = "navbar-ul">
+          <li><a href="{{ url_for('index') }}">Home</a></li>
+          <li><a href="{{ url_for('scan') }}">Scan</a></li>
+          <li><a href="{{ url_for('add_virus') }}">Add</a></li>
+          <li><a href="{{ url_for('history') }}">History</a></li>
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <h1>Upload files</h1>
+      <h2>so we can scan them and add to our database</h2>
+      {{ dropzone.create(action='add_to_db') }}
+      {{ dropzone.config() }}
+      {{ dropzone.style('margin: auto; border: 2px dashed #0085FF;min-width: 800px; background-color:#37393F; color: white;  margin: 0px; display: flex; align-items: center; justify-content: center; min-height: 200px; width: 50%;') }}
+      <form  method="post">
+        <input id ="submit-button" class="auth-button" type="submit" name="" value="submit">
+      </form>
+    </main>
+  </body>
+</html>

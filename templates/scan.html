@@ -9,6 +9,8 @@
     <title>Scan - Antivirus</title>
   </head>
   <body>
+    <script  src="{{url_for('static',filename='scripts/input_path_control.js')}}"></script>
+
     {{ dropzone.load_js() }}
     <nav>
       <div class="navbar-content">
@@ -17,6 +19,7 @@
           <li><a href="{{ url_for('scan') }}">Scan</a></li>
           <li><a href="{{ url_for('add_virus') }}">Add</a></li>
           <li><a href="{{ url_for('history') }}">History</a></li>
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
 
         </ul>
       </div>
@@ -24,7 +27,7 @@
     </nav>
     <main>
       <h1 class="main-text">CHOOSE SCANNING TARGET</h1>
-      <form class="scan-select"  method="post">
+      <form class="scan-select" id="inp-form"  method="post">
         <div id="radios">
 
           <div class="select-option">
@@ -39,22 +42,32 @@
               <p>File</p>
             </label>
           </div>
-          <div class="select-option">
+          <!-- <div class="select-option">
             <input type="radio" id="control_03" name="scan-type" value="directory">
             <label for="control_03">
               <p>Directory</p>
             </label>
-          </div>
+          </div> -->
         </div>
-        <input id="path-input" type="text" name="path" value="" placeholder="Path">
+        <!-- <input id="path-input" type="text" name="path" value="" placeholder="Path"> -->
         <!-- <input type = "file" name = "file" /> -->
 
-        <input type="submit" id="submit-button" value="Scan">
       </form>
       {{ dropzone.create(action='file_upload') }}
       {{ dropzone.config() }}
-      {{ dropzone.style('border: 2px dashed #0085FF;min-width: 800px; background-color:#37393F; color: white;  margin: 0px; display: flex; align-items: center; justify-content: center; min-height: 200px;') }}
+      {{ dropzone.style('margin-top: 50px; border: 2px dashed #0085FF;min-width: 800px; background-color:#37393F; color: white;   display: flex; align-items: center; justify-content: center; min-height: 200px;') }}
+      <input form="inp-form" type="submit" id="submit-button" value="Scan">
 
+      {% with messages = get_flashed_messages() %}
+         {% if messages %}
+         <script>
+           var messages = {{ messages | safe }};
+           for (var i=0; i<messages.length; i++) {
+             alert(messages[i]);
+           }
+         </script>
+         {% endif %}
+      {% endwith %}
     </main>
   </body>
 </html>

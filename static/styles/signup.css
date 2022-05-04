@@ -1,0 +1,46 @@
+body{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-content{
+  width: 350px;
+  height: 380px;
+  background-color: #37393F;
+  border-radius: 20px;
+  justify-content: center;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sign-text{
+  decoration: none;
+  color: #CCA43B;
+}
+
+.form-input {
+  width: 90%;
+  height: 37px;
+  background-color: #202124;
+  border: none;
+  border-radius: 7px;
+  margin-bottom: 20px;
+  text-indent: 10px;
+  color: white;
+}
+
+#sign-in-button {
+  width: 110px;
+  height: 32px;
+}

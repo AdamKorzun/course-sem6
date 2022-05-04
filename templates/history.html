@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/master.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='styles/history.css')}}">
+
+    <title>Antivirus</title>
+  </head>
+  <body>
+    <nav>
+      <div class="navbar-content">
+        <ul class = "navbar-ul">
+          <li><a href="{{ url_for('index') }}">Home</a></li>
+          <li><a href="{{ url_for('scan') }}">Scan</a></li>
+          <li><a href="{{ url_for('add_virus') }}">Add</a></li>
+          <li><a href="{{ url_for('history') }}">History</a></li>
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <table>
+        <tr>
+          <th>Filename</th>
+          <th>Is file safe?</th>
+        </tr>
+        {% for f in scan_history %}
+          <tr>
+            {% for i in f %}
+              <td>{{ i }}</td>
+            {% endfor %}
+          </tr>
+         {% endfor %}
+
+      </table>
+    </main>
+  </body>
+</html>
