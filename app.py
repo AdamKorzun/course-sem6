@@ -112,7 +112,7 @@ def login_page():
         if (user):
             login_user(user)
             return redirect(url_for('index'))
-    return render_template('login_page.html')
+    return render_template('signin.html')
 
 @app.route('/signup/', methods=['POST', 'GET'])
 def signup_page():
@@ -135,6 +135,11 @@ def unauthorized(e):
 
 if __name__ == '__main__':
     app.secret_key = 'super_secret'
+    app.config['DROPZONE_MAX_FILE_SIZE'] = 200
+    app.config['DROPZONE_ALLOWED_FILE_CUSTOM'] = True
+    app.config['DROPZONE_ALLOWED_FILE_TYPE'] = '*'
+
+
     login_manager.init_app(app)
 
-    app.run(host='0.0.0.0', port='5000', debug=False)
+    app.run(host='0.0.0.0', port='5005', debug=False)
