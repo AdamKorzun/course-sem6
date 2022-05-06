@@ -17,7 +17,11 @@ class Scanner:
         if result:
             return True
         return False
-
+    def get_md5(self, path):
+        with open('upload_files/' + path,"rb") as f:
+            bytes = f.read()
+            readable_md5 = hashlib.md5(bytes).hexdigest();
+        return  readable_md5
     def is_safe(self, path):
         with open('upload_files/' + path,"rb") as f:
             bytes = f.read()

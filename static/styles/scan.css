@@ -154,3 +154,14 @@ main {
 #myDropzone {
   visibility: hidden;
 }
+
+.chb {
+  display: flex;
+  flex-direction:  row;
+  justify-content: center;
+  align-items: center;
+}
+#cb {
+  transform: scale(1.5);
+
+}

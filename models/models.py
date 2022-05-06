@@ -24,3 +24,15 @@ class User(UserMixin, db.Model):
     def __init__(self, username, password):
         self.username = username
         self.password = password
+
+
+class UploadedHashes(db.Model):
+    __tablename = 'uploaded_hashes'
+    id = db.Column('id', db.Integer, primary_key=True)
+    namehash = db.Column(db.String(500), unique=True, nullable=False)
+    filename = db.Column(db.String(500), nullable=False)
+    md5_hash = db.Column(db.String(500), nullable=False)
+    def __init__(self, namehash, filename, md5_hash):
+        self.namehash = namehash
+        self.filename = filename
+        self.md5_hash = md5_hash

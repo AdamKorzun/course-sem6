@@ -54,7 +54,18 @@ def scan():
         if scan_type == 'file':
             if tracked_files:
                 for f in tracked_files:
-                    scan_history.append((f, scanner.is_safe(f)))
+
+                    h = hashlib.md5((str(f) + str(current_user.username)).encode('utf-8')).hexdigest()
+                    uh = UploadedHashes.query.filter_by(namehash = h).first()
+                    modified = False
+                    if uh:
+                        if uh.md5_hash != scanner.get_md5(h):
+                            modified = True
+                    else:
+                        uh = UploadedHashes(h, f, scanner.get_md5(h))
+                        db.session.add(uh)
+                        db.session.commit()
+                    scan_history.append((f, scanner.is_safe(h), modified))
                     print(scan_history)
                 tracked_files.clear()
                 redirect(url_for('history'))
@@ -88,10 +99,12 @@ def history():
 @login_required
 def file_upload():
     if request.method == 'POST':
+
         f = request.files.get('file')
+        h = hashlib.md5((str(f.filename) + str(current_user.username)).encode('utf-8')).hexdigest()
         tracked_files.append(f.filename)
 
-        f.save(os.path.join('upload_files', f.filename))
+        f.save(os.path.join('upload_files', h))
 
     return 'upload template'
 
@@ -136,10 +149,9 @@ def unauthorized(e):
 if __name__ == '__main__':
     app.secret_key = 'super_secret'
     app.config['DROPZONE_MAX_FILE_SIZE'] = 200
-    app.config['DROPZONE_ALLOWED_FILE_CUSTOM'] = True
-    app.config['DROPZONE_ALLOWED_FILE_TYPE'] = '*'
+
 
 
     login_manager.init_app(app)
 
-    app.run(host='0.0.0.0', port='5005', debug=False)
+    app.run(host='0.0.0.0', port='5000', debug=False)
